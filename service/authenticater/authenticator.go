@@ -31,7 +31,7 @@ func NewAuthenticator(config core.Config) Authenticator {
 			ClientSecret: config.Auth0.AUTH0_CLIENT_SECRET,
 			RedirectURL:  config.Auth0.AUTH0_CALLBACK_URL,
 			Endpoint:     provider.Endpoint(),
-			Scopes:       []string{oidc.ScopeOpenID, "profile"},
+			Scopes:       []string{oidc.ScopeOpenID, "profile", "email"},
 		},
 	}
 }
