@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/snakesneaks/oauth2-test/core"
 	"github.com/snakesneaks/oauth2-test/service/handler"
+	"github.com/snakesneaks/oauth2-test/service/middleware"
 )
 
 func Init() {
@@ -28,7 +29,7 @@ func Run() {
 	router.GET("/", handler.Home)
 	router.GET("/login", handler.Login)
 	router.GET("/callback", handler.Callback)
-	router.GET("/user", handler.User)
+	router.GET("/user", middleware.IsAuthenticated, handler.User)
 	router.GET("/logout", handler.Logout)
 
 	log.Printf("server listening on http://localhost:%s\n", config.Host.PORT)

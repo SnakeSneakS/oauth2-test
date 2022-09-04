@@ -123,5 +123,9 @@ func (h handler) Logout(ctx *gin.Context) {
 	parameters.Add("client_id", h.config.Auth0.AUTH0_CLIENT_ID)
 	logoutUrl.RawQuery = parameters.Encode()
 
+	session := sessions.Default(ctx)
+	session.Clear()
+	session.Save()
+
 	ctx.Redirect(http.StatusTemporaryRedirect, logoutUrl.String())
 }
